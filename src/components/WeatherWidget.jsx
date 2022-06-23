@@ -1,5 +1,6 @@
 import { createStyles } from "@mantine/core"
 import React from "react"
+import Clock from "~/components/Clock"
 import WidgetPaper from "~/components/WidgetPaper"
 
 const useStyles = createStyles(() => ({
@@ -20,7 +21,7 @@ const WeatherWidget = () => {
     <WidgetPaper>
       <div className={classes.grid}>
         <div style={{ backgroundColor: "red", width: "20px", height: "20px" }} />
-        <div style={{ backgroundColor: "red", width: "20px", height: "20px" }} />
+        <Clock />
         <div style={{ backgroundColor: "red", width: "20px", height: "20px" }} />
         <div style={{ backgroundColor: "red", width: "20px", height: "20px" }} />
       </div>
