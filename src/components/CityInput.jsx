@@ -1,7 +1,8 @@
-import { Autocomplete, Group, Loader } from "@mantine/core"
-import { useEffect, useState, useTransition } from "react"
+import { Group, Loader } from "@mantine/core"
+import { useState, useTransition } from "react"
 import { Search } from "tabler-icons-react"
 import CityInputItem from "~/components/CityInputItem"
+import WidgetAutocomplete from "~/components/WidgetAutocomplete"
 import citiesData from "~/utils/cities.json"
 import isoToCountry from "~/utils/isoToCountry"
 
@@ -26,22 +27,26 @@ const CityInput = () => {
   const [isFiltering, startIsFiltering] = useTransition()
 
   const handleBlur = () => setValue(submission.name)
-  const handleFocus = () => setValue("")
-  const handleChange = (newValue) => setValue(newValue)
+  const handleFocus = () => {
+    setValue("")
+    startIsFiltering(() => {
+      setFilteredCities(filterCities("", cities))
+    })
+  }
+  const handleChange = (newValue) => {
+    setValue(newValue)
+    startIsFiltering(() => {
+      setFilteredCities(filterCities(newValue, cities))
+    })
+  }
   const handleItemSubmit = (item) => {
     setSubmission(item)
     setValue(item.name)
   }
 
-  useEffect(() => {
-    startIsFiltering(() => {
-      setFilteredCities(filterCities(value, cities))
-    })
-  }, [value])
-
   return (
     <Group>
-      <Autocomplete
+      <WidgetAutocomplete
         size="md"
         radius="xl"
         placeholder="Search for a city"
@@ -57,7 +62,7 @@ const CityInput = () => {
         filter={(_value, item) => item} // hack to make the autocomplete work
         aria-label="City input"
       />
-      {isFiltering && <Loader size="sm"/>}
+      {isFiltering && <Loader size="sm" />}
     </Group>
   )
 }
