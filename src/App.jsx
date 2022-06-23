@@ -1,8 +1,13 @@
+import { Center } from "@mantine/core"
+import ThemeProvider from "./contexts/ThemeProvider"
+
 const App = () => {
   return (
-    <div>
-      <h1>hello world!</h1>
-    </div>
+    <ThemeProvider>
+      <Center style={{ height: "100vh" }}>
+        <h1>hello world!</h1>
+      </Center>
+    </ThemeProvider>
   )
 }
 
