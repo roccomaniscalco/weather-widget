@@ -1,5 +1,6 @@
 import { createStyles } from "@mantine/core"
 import React from "react"
+import CityInput from "~/components/CityInput"
 import Clock from "~/components/Clock"
 import WidgetPaper from "~/components/WidgetPaper"
 
@@ -23,10 +24,9 @@ const WeatherWidget = () => {
   return (
     <WidgetPaper>
       <div className={classes.container}>
-        <div
-          className={classes.topLeft}
-          style={{ backgroundColor: "red", width: "20px", height: "20px" }}
-        />
+        <div className={classes.topLeft}>
+          <CityInput />
+        </div>
         <div className={classes.topRight}>
           <Clock />
         </div>
