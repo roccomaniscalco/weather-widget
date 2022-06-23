@@ -1,4 +1,4 @@
-import { MantineProvider } from "@mantine/core"
+import { Global, MantineProvider } from "@mantine/core"
 import { node } from "prop-types"
 import React from "react"
 
@@ -9,6 +9,14 @@ const ThemeProvider = ({ children }) => {
       withGlobalStyles
       theme={{ colorScheme: "dark" }}
     >
+      <Global
+        styles={(theme) => ({
+          body: {
+            backgroundColor:
+              theme.colorScheme === "dark" ? theme.colors.dark[9] : theme.white,
+          },
+        })}
+      />
       {children}
     </MantineProvider>
   )
