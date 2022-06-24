@@ -48,7 +48,6 @@ const CityInput = () => {
     <Group>
       <WidgetAutocomplete
         size="md"
-        radius="xl"
         placeholder="Search for a city"
         nothingFound="No cities found"
         icon={<Search size={16} />}
