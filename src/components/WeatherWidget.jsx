@@ -1,23 +1,23 @@
-import { createStyles } from "@mantine/core"
+import { createStyles, Group, Stack } from "@mantine/core"
 import { Suspense, useState } from "react"
 import CityInput from "~/components/CityInput"
 import Clock from "~/components/Clock"
+import WeatherDetails from "~/components/WeatherDetails"
 import WeatherSummary from "~/components/WeatherSummary"
 import WidgetPaper from "~/components/WidgetPaper"
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles({
   container: {
     position: "relative",
-    width: "500px",
-    height: "500px",
-    margin: theme.spacing.lg,
+    width: 400,
+    height: 480,
   },
 
   topLeft: { position: "absolute", top: "0", left: "0" },
   topRight: { position: "absolute", top: "0", right: "0" },
   bottomRight: { position: "absolute", bottom: "0", right: "0" },
   bottomLeft: { position: "absolute", bottom: "0", left: "0" },
-}))
+})
 
 const WeatherWidget = () => {
   const { classes } = useStyles()
@@ -35,21 +35,22 @@ const WeatherWidget = () => {
   return (
     <WidgetPaper>
       <div className={classes.container}>
-        <div className={classes.topLeft}>
-          <CityInput city={city} setCity={setCity} />
-        </div>
-        <div className={classes.topRight}>
-          <Clock />
-        </div>
-        <div className={classes.bottomRight}>
-          <Suspense>
-            <WeatherSummary city={city} />
-          </Suspense>
-        </div>
-        <div
-          className={classes.bottomLeft}
-          style={{ backgroundColor: "red", width: "20px", height: "20px" }}
-        />
+        <Stack justify="space-between" style={{ height: "100%" }}>
+          <Group position="apart">
+            <CityInput city={city} setCity={setCity} />
+            <Stack>
+              <Clock />
+            </Stack>
+          </Group>
+          <Group position="apart" align="end">
+            <Suspense>
+              <WeatherDetails city={city} />
+            </Suspense>
+            <Suspense>
+              <WeatherSummary city={city} />
+            </Suspense>
+          </Group>
+        </Stack>
       </div>
     </WidgetPaper>
   )

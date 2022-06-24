@@ -6,7 +6,7 @@ import CityInputItem from "~/components/CityInputItem"
 import WidgetAutocomplete from "~/components/WidgetAutocomplete"
 import { city } from "~/constants/propTypes"
 import citiesData from "~/constants/cities.json"
-import isoToCountry from "~/utils/isoToCountry"
+import isoToCountry from "~/constants/isoToCountry"
 
 const cities = citiesData.map((city) => ({ value: `${city.id}`, ...city }))
 
@@ -48,6 +48,7 @@ const CityInput = ({ city, setCity }) => {
   return (
     <Group>
       <WidgetAutocomplete
+        sx={{ width: "100%", flex: 1 }}
         size="md"
         placeholder="Search for a city"
         nothingFound="No cities found"

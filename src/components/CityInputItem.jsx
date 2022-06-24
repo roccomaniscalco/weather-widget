@@ -1,7 +1,7 @@
 import { Group, Text } from "@mantine/core"
 import { string } from "prop-types"
 import { forwardRef } from "react"
-import isoToCountry from "~/utils/isoToCountry"
+import isoToCountry from "~/constants/isoToCountry"
 
 const CityInputItem = forwardRef(({ name, state, country, ...props }, ref) => (
   <div ref={ref} {...props}>
