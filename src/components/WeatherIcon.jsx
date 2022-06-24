@@ -1,11 +1,11 @@
-import React from "react"
+import { Transition } from "@mantine/core"
 import { city } from "~/constants/propTypes"
 import weatherCodeToIcon from "~/constants/weatherCodeToIcon"
 import useWeather from "~/hooks/useWeather"
 
 const WeatherIcon = ({ city }) => {
-  const { weather } = useWeather(city.id)
-  console.log(weather)
+  const { weather, isLagging } = useWeather(city.id)
+  const icon = weatherCodeToIcon[weather.weather[0].icon]
 
   return (
     <div
@@ -16,10 +16,18 @@ const WeatherIcon = ({ city }) => {
         transform: "translate(-50%, -60%)",
       }}
     >
-      <img
-        src={`weather/${weatherCodeToIcon[weather.weather[0].icon]}`}
-        width={220}
-      />
+      <Transition
+        transition="fade"
+        duration={100}
+        timingFunction="ease"
+        mounted={!isLagging}
+      >
+        {(styles) => (
+          <div styles={styles}>
+            <img src={`weather/${icon}`} width={300} />
+          </div>
+        )}
+      </Transition>
     </div>
   )
 }

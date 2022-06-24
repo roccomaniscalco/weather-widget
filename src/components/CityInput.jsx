@@ -1,12 +1,13 @@
 import { Group, Loader } from "@mantine/core"
 import { func } from "prop-types"
-import { useState, useTransition } from "react"
+import { useDeferredValue, useState } from "react"
 import { Search } from "tabler-icons-react"
 import CityInputItem from "~/components/CityInputItem"
 import WidgetAutocomplete from "~/components/WidgetAutocomplete"
 import { city } from "~/constants/propTypes"
 import citiesData from "~/constants/cities.json"
 import isoToCountry from "~/constants/isoToCountry"
+import useWeather from "~/hooks/useWeather"
 
 const cities = citiesData.map((city) => ({ value: `${city.id}`, ...city }))
 
@@ -23,23 +24,13 @@ const filterCities = (value, cities) => {
 }
 
 const CityInput = ({ city, setCity }) => {
+  const { isLagging } = useWeather(city.id)
   const [value, setValue] = useState(city.name)
-  const [filteredCities, setFilteredCities] = useState(cities)
-  const [isFiltering, startIsFiltering] = useTransition()
+  const filteredCities = useDeferredValue(filterCities(value, cities))
 
   const handleBlur = () => setValue(city.name)
-  const handleFocus = () => {
-    setValue("")
-    startIsFiltering(() => {
-      setFilteredCities(filterCities("", cities))
-    })
-  }
-  const handleChange = (newValue) => {
-    setValue(newValue)
-    startIsFiltering(() => {
-      setFilteredCities(filterCities(newValue, cities))
-    })
-  }
+  const handleFocus = () => setValue("")
+  const handleChange = (newValue) => setValue(newValue)
   const handleItemSubmit = (item) => {
     setCity(item)
     setValue(item.name)
@@ -63,7 +54,7 @@ const CityInput = ({ city, setCity }) => {
         filter={(_value, item) => item} // hack to make the autocomplete work
         aria-label="City input"
       />
-      {isFiltering && <Loader size="sm" />}
+      {isLagging && <Loader size="sm" />}
     </Group>
   )
 }

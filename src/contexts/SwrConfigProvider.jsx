@@ -6,7 +6,6 @@ const options = {
   revalidateOnFocus: false,
   revalidateOnReconnect: false,
   shouldRetryOnError: false,
-  suspense: true,
 }
 
 const SwrConfigProvider = ({ children }) => {

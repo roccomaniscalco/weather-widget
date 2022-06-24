@@ -1,11 +1,12 @@
 import { Group, Stack } from "@mantine/core"
-import { Suspense, useState } from "react"
+import { useState } from "react"
 import CityInput from "~/components/CityInput"
 import Clock from "~/components/Clock"
 import WeatherDetails from "~/components/WeatherDetails"
 import WeatherIcon from "~/components/WeatherIcon"
 import WeatherSummary from "~/components/WeatherSummary"
 import WidgetPaper from "~/components/WidgetPaper"
+import useWeather from "~/hooks/useWeather"
 
 const WeatherWidget = () => {
   const [city, setCity] = useState({
@@ -18,6 +19,7 @@ const WeatherWidget = () => {
       lat: 33.749001,
     },
   })
+  const { weather } = useWeather(city.id)
 
   return (
     <WidgetPaper>
@@ -31,18 +33,16 @@ const WeatherWidget = () => {
             <Clock />
           </Stack>
         </Group>
-        <Group position="apart" align="end">
-          <Suspense>
-            <WeatherDetails city={city} />
-          </Suspense>
-          <Suspense>
-            <WeatherSummary city={city} />
-          </Suspense>
-        </Group>
+        {weather && (
+          <>
+            <Group position="apart" align="end">
+              <WeatherDetails city={city} />
+              <WeatherSummary city={city} />
+            </Group>
+            <WeatherIcon city={city} />
+          </>
+        )}
       </Stack>
-      <Suspense>
-        <WeatherIcon city={city} />
-      </Suspense>
     </WidgetPaper>
   )
 }
