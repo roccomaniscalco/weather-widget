@@ -1,9 +1,11 @@
 import { Group, Loader } from "@mantine/core"
+import { func } from "prop-types"
 import { useState, useTransition } from "react"
 import { Search } from "tabler-icons-react"
 import CityInputItem from "~/components/CityInputItem"
 import WidgetAutocomplete from "~/components/WidgetAutocomplete"
-import citiesData from "~/utils/cities.json"
+import { city } from "~/constants/propTypes"
+import citiesData from "~/constants/cities.json"
 import isoToCountry from "~/utils/isoToCountry"
 
 const cities = citiesData.map((city) => ({ value: `${city.id}`, ...city }))
@@ -20,13 +22,12 @@ const filterCities = (value, cities) => {
   )
 }
 
-const CityInput = () => {
-  const [submission, setSubmission] = useState({ name: "Atlanta" })
-  const [value, setValue] = useState(submission.name)
+const CityInput = ({ city, setCity }) => {
+  const [value, setValue] = useState(city.name)
   const [filteredCities, setFilteredCities] = useState(cities)
   const [isFiltering, startIsFiltering] = useTransition()
 
-  const handleBlur = () => setValue(submission.name)
+  const handleBlur = () => setValue(city.name)
   const handleFocus = () => {
     setValue("")
     startIsFiltering(() => {
@@ -40,7 +41,7 @@ const CityInput = () => {
     })
   }
   const handleItemSubmit = (item) => {
-    setSubmission(item)
+    setCity(item)
     setValue(item.name)
   }
 
@@ -64,6 +65,11 @@ const CityInput = () => {
       {isFiltering && <Loader size="sm" />}
     </Group>
   )
+}
+
+CityInput.propTypes = {
+  city: city.isRequired,
+  setCity: func.isRequired,
 }
 
 export default CityInput

@@ -1,8 +1,8 @@
 import { createStyles } from "@mantine/core"
-import React from "react"
 import CityInput from "~/components/CityInput"
 import Clock from "~/components/Clock"
 import WidgetPaper from "~/components/WidgetPaper"
+import useWeather from "~/hooks/useWeather"
 
 const useStyles = createStyles((theme) => ({
   container: {
@@ -20,12 +20,13 @@ const useStyles = createStyles((theme) => ({
 
 const WeatherWidget = () => {
   const { classes } = useStyles()
+  const { city, setCity } = useWeather()
 
   return (
     <WidgetPaper>
       <div className={classes.container}>
         <div className={classes.topLeft}>
-          <CityInput />
+          <CityInput city={city} setCity={setCity} />
         </div>
         <div className={classes.topRight}>
           <Clock />
