@@ -1,8 +1,9 @@
 import { createStyles } from "@mantine/core"
+import { Suspense, useState } from "react"
 import CityInput from "~/components/CityInput"
 import Clock from "~/components/Clock"
+import WeatherSummary from "~/components/WeatherSummary"
 import WidgetPaper from "~/components/WidgetPaper"
-import useWeather from "~/hooks/useWeather"
 
 const useStyles = createStyles((theme) => ({
   container: {
@@ -20,7 +21,16 @@ const useStyles = createStyles((theme) => ({
 
 const WeatherWidget = () => {
   const { classes } = useStyles()
-  const { city, setCity } = useWeather()
+  const [city, setCity] = useState({
+    id: 4180439,
+    name: "Atlanta",
+    state: "GA",
+    country: "US",
+    coord: {
+      lon: -84.387978,
+      lat: 33.749001,
+    },
+  })
 
   return (
     <WidgetPaper>
@@ -31,10 +41,11 @@ const WeatherWidget = () => {
         <div className={classes.topRight}>
           <Clock />
         </div>
-        <div
-          className={classes.bottomRight}
-          style={{ backgroundColor: "red", width: "20px", height: "20px" }}
-        />
+        <div className={classes.bottomRight}>
+          <Suspense>
+            <WeatherSummary city={city} />
+          </Suspense>
+        </div>
         <div
           className={classes.bottomLeft}
           style={{ backgroundColor: "red", width: "20px", height: "20px" }}
