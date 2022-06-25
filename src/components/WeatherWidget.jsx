@@ -29,9 +29,7 @@ const WeatherWidget = () => {
       >
         <Group position="apart" spacing="xl">
           <CityInput city={city} setCity={setCity} />
-          <Stack>
-            <Clock />
-          </Stack>
+          {weather && <Clock city={city} />}
         </Group>
         <Center pt="xs">
           <WeatherIcon city={city} />
