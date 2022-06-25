@@ -1,12 +1,12 @@
-import { Group, Loader } from "@mantine/core"
+import { Loader, Space } from "@mantine/core"
 import { func } from "prop-types"
 import { useDeferredValue, useState } from "react"
 import { Search } from "tabler-icons-react"
 import CityInputItem from "~/components/CityInputItem"
 import WidgetAutocomplete from "~/components/WidgetAutocomplete"
-import { city } from "~/constants/propTypes"
 import citiesData from "~/constants/cities.json"
 import isoToCountry from "~/constants/isoToCountry"
+import { city } from "~/constants/propTypes"
 import useWeather from "~/hooks/useWeather"
 
 const cities = citiesData.map((city) => ({ value: `${city.id}`, ...city }))
@@ -37,25 +37,23 @@ const CityInput = ({ city, setCity }) => {
   }
 
   return (
-    <Group>
-      <WidgetAutocomplete
-        sx={{ width: "100%", flex: 1 }}
-        size="md"
-        placeholder="Search for a city"
-        nothingFound="No cities found"
-        icon={<Search size={16} />}
-        itemComponent={CityInputItem}
-        data={filteredCities}
-        value={value}
-        onChange={handleChange}
-        onItemSubmit={handleItemSubmit}
-        onBlur={handleBlur}
-        onFocus={handleFocus}
-        filter={(_value, item) => item} // hack to make the autocomplete work
-        aria-label="City input"
-      />
-      {isLagging && <Loader size="sm" />}
-    </Group>
+    <WidgetAutocomplete
+      sx={{ flex: 1 }}
+      size="md"
+      placeholder="Search for a city"
+      nothingFound="No cities found"
+      icon={<Search size={16} />}
+      itemComponent={CityInputItem}
+      data={filteredCities}
+      value={value}
+      onChange={handleChange}
+      onItemSubmit={handleItemSubmit}
+      onBlur={handleBlur}
+      onFocus={handleFocus}
+      filter={(_value, item) => item} // hack to make the autocomplete work
+      aria-label="City input"
+      rightSection={isLagging ? <Loader size="sm" /> : <Space />}
+    />
   )
 }
 

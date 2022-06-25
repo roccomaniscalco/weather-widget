@@ -23,7 +23,7 @@ const ThemeProvider = ({ children }) => {
 }
 
 ThemeProvider.propTypes = {
-  children: node.isRequired,
+  children: node,
 }
 
 export default ThemeProvider

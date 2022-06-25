@@ -17,7 +17,7 @@ const WeatherIcon = ({ city }) => {
       >
         {(styles) => (
           <div style={{ ...styles }}>
-            <img src={`weather/${icon}.png`} width={280} alt={icon} />
+            <img src={`weather/${icon}.png`} width={260} alt={icon} />
           </div>
         )}
       </Transition>
@@ -26,7 +26,7 @@ const WeatherIcon = ({ city }) => {
 }
 
 WeatherIcon.propTypes = {
-  city: city,
+  city: city.isRequired,
 }
 
 export default WeatherIcon
