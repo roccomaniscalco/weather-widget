@@ -1,4 +1,4 @@
-import { Group, Stack } from "@mantine/core"
+import { Center, Group, Stack } from "@mantine/core"
 import { useState } from "react"
 import CityInput from "~/components/CityInput"
 import Clock from "~/components/Clock"
@@ -33,14 +33,14 @@ const WeatherWidget = () => {
             <Clock />
           </Stack>
         </Group>
+        <Center pt="xs">
+          <WeatherIcon city={city} />
+        </Center>
         {weather && (
-          <>
-            <Group position="apart" align="end">
-              <WeatherDetails city={city} />
-              <WeatherSummary city={city} />
-            </Group>
-            <WeatherIcon city={city} />
-          </>
+          <Group position="apart" align="end">
+            <WeatherDetails city={city} />
+            <WeatherSummary city={city} />
+          </Group>
         )}
       </Stack>
     </WidgetPaper>

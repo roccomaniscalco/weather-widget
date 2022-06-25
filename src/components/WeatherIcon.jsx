@@ -5,26 +5,19 @@ import useWeather from "~/hooks/useWeather"
 
 const WeatherIcon = ({ city }) => {
   const { weather, isLagging } = useWeather(city.id)
-  const icon = weatherCodeToIcon[weather.weather[0].icon]
+  const icon = weatherCodeToIcon[weather?.weather[0]?.icon]
 
   return (
-    <div
-      style={{
-        position: "absolute",
-        left: "50%",
-        top: "50%",
-        transform: "translate(-50%, -60%)",
-      }}
-    >
+    <div>
       <Transition
-        transition="fade"
-        duration={100}
+        transition="scale"
+        duration={400}
         timingFunction="ease"
-        mounted={!isLagging}
+        mounted={!isLagging || !icon}
       >
         {(styles) => (
-          <div styles={styles}>
-            <img src={`weather/${icon}`} width={300} />
+          <div style={{ ...styles }}>
+            <img src={`weather/${icon}`} width={280} />
           </div>
         )}
       </Transition>
