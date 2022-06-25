@@ -17,7 +17,7 @@ const WeatherIcon = ({ city }) => {
       >
         {(styles) => (
           <div style={{ ...styles }}>
-            <img src={`weather/${icon}`} width={280} />
+            <img src={`weather/${icon}.png`} width={280} alt={icon} />
           </div>
         )}
       </Transition>
