@@ -1,7 +1,7 @@
 import { Loader, Space } from "@mantine/core"
 import { useDeferredValue, useState } from "react"
 import { Search } from "tabler-icons-react"
-import CityInputItem from "~/components/CityInputItem"
+import { CityInputItem, SearchedCityInputItem } from "~/components/CityInputItem"
 import WidgetAutocomplete from "~/components/WidgetAutocomplete"
 import citiesData from "~/constants/cities.json"
 import isoToCountry from "~/constants/isoToCountry"
@@ -23,7 +23,7 @@ const filterCities = (value, cities) => {
 }
 
 const CityInput = () => {
-  const { city, searchCity } = useCity()
+  const { city, searchCity, searchedCities } = useCity()
   const { isLagging } = useWeather(city.id)
   const [value, setValue] = useState(city.name)
   const filteredCities = useDeferredValue(filterCities(value, cities))
@@ -43,8 +43,8 @@ const CityInput = () => {
       placeholder="Search for a city"
       nothingFound="No cities found"
       icon={<Search size={16} />}
-      itemComponent={CityInputItem}
-      data={filteredCities}
+      itemComponent={value === "" ? SearchedCityInputItem : CityInputItem}
+      data={value === "" ? searchedCities : filteredCities}
       value={value}
       onChange={handleChange}
       onItemSubmit={handleItemSubmit}

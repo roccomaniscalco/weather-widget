@@ -13,7 +13,7 @@ const WeatherWidget = () => {
         justify="space-between"
         style={{ height: "480px", width: "400px" }}
       >
-        <Group position="apart" >
+        <Group position="apart" spacing="lg">
           <CityInput />
           <Clock />
         </Group>

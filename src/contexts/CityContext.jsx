@@ -28,7 +28,7 @@ const CityProvider = ({ children }) => {
 
   const searchCity = useCallback(
     (city) => {
-      const newSearchedCities = Array.from(searchedCities)
+      const newSearchedCities = Array.from(searchedCities).reverse()
 
       // if the city is already in the list, remove it first
       const index = newSearchedCities.findIndex((c) => c.id === city.id)
@@ -38,13 +38,13 @@ const CityProvider = ({ children }) => {
       // if the list is too long, remove the first item
       if (newSearchedCities.length > 5) newSearchedCities.shift()
 
-      setSearchedCities(newSearchedCities)
+      setSearchedCities(newSearchedCities.reverse())
       setCity(city)
     },
     [searchedCities, setSearchedCities, setCity]
   )
 
-  const cityValue = { city, searchCity }
+  const cityValue = { city, searchCity, searchedCities }
 
   return (
     <CityContext.Provider value={cityValue}>{children}</CityContext.Provider>
