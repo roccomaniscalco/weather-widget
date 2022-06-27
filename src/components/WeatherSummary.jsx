@@ -1,10 +1,13 @@
-import { Stack, Text } from "@mantine/core"
-import { city } from "~/constants/propTypes"
+import { Skeleton, Stack, Text } from "@mantine/core"
+import { useCity } from "~/contexts/CityContext"
 import useWeather from "~/hooks/useWeather"
 import { kelvinToFahrenheit } from "~/utils/convertKelvin"
 
-const WeatherSummary = ({ city }) => {
+const WeatherSummary = () => {
+  const { city } = useCity()
   const { weather } = useWeather(city.id)
+
+  if (!weather) return <Skeleton sx={{ flex: 2 }} height={100} />
 
   return (
     <Stack spacing={6}>
@@ -16,10 +19,6 @@ const WeatherSummary = ({ city }) => {
       </Text>
     </Stack>
   )
-}
-
-WeatherSummary.propTypes = {
-  city: city.isRequired,
 }
 
 export default WeatherSummary

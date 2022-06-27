@@ -1,12 +1,11 @@
 import { Loader, Space } from "@mantine/core"
-import { func } from "prop-types"
 import { useDeferredValue, useState } from "react"
 import { Search } from "tabler-icons-react"
 import CityInputItem from "~/components/CityInputItem"
 import WidgetAutocomplete from "~/components/WidgetAutocomplete"
 import citiesData from "~/constants/cities.json"
 import isoToCountry from "~/constants/isoToCountry"
-import { city } from "~/constants/propTypes"
+import { useCity } from "~/contexts/CityContext"
 import useWeather from "~/hooks/useWeather"
 
 const cities = citiesData.map((city) => ({ value: `${city.id}`, ...city }))
@@ -23,7 +22,8 @@ const filterCities = (value, cities) => {
   )
 }
 
-const CityInput = ({ city, setCity }) => {
+const CityInput = () => {
+  const { city, searchCity } = useCity()
   const { isLagging } = useWeather(city.id)
   const [value, setValue] = useState(city.name)
   const filteredCities = useDeferredValue(filterCities(value, cities))
@@ -32,7 +32,7 @@ const CityInput = ({ city, setCity }) => {
   const handleFocus = () => setValue("")
   const handleChange = (newValue) => setValue(newValue)
   const handleItemSubmit = (item) => {
-    setCity(item)
+    searchCity(item)
     setValue(item.name)
   }
 
@@ -55,11 +55,6 @@ const CityInput = ({ city, setCity }) => {
       rightSection={isLagging ? <Loader size="sm" /> : <Space />}
     />
   )
-}
-
-CityInput.propTypes = {
-  city: city.isRequired,
-  setCity: func.isRequired,
 }
 
 export default CityInput
