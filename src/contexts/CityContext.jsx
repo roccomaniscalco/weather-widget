@@ -28,13 +28,14 @@ const CityProvider = ({ children }) => {
 
   const searchCity = useCallback(
     (city) => {
-      // if the city is already in the list, remove it and add it to the end
-      const searchedCitiesSet = new Set(searchedCities)
-      if (searchedCitiesSet.has(city.id)) searchedCitiesSet.delete(city.id)
-      searchedCitiesSet.add(city.id)
+      const newSearchedCities = Array.from(searchedCities)
 
-      // keep the list at a max of 5 cities
-      const newSearchedCities = Array.from(searchedCitiesSet)
+      // if the city is already in the list, remove it first
+      const index = newSearchedCities.findIndex((c) => c.id === city.id)
+      if (index !== -1) newSearchedCities.splice(index, 1)
+      // add the city to the end of the list
+      newSearchedCities.push(city)
+      // if the list is too long, remove the first item
       if (newSearchedCities.length > 5) newSearchedCities.shift()
 
       setSearchedCities(newSearchedCities)

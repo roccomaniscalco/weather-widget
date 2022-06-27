@@ -20,7 +20,7 @@ const CityInputItem = forwardRef(({ name, state, country, ...props }, ref) => (
 
 CityInputItem.propTypes = {
   name: string.isRequired,
-  state: string,
+  state: string.isRequired,
   country: string.isRequired,
 }
 
