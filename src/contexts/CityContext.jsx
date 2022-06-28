@@ -4,6 +4,7 @@ import { createContext, useCallback, useContext } from "react"
 
 const defaultCity = {
   id: 4180439,
+  value: "4180439",
   name: "Atlanta",
   state: "GA",
   country: "US",
