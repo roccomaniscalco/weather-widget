@@ -26,7 +26,7 @@ const WeatherIcon = () => {
         mounted={!isLoading || !icon}
       >
         {(styles) => (
-          <div style={{ ...styles, perspective: 500 }}>
+          <div style={{ perspective: 400, ...styles }}>
             <img
               src={icon && `weather/${icon}.png`}
               height={260}

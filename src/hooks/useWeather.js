@@ -11,7 +11,6 @@ const useWeather = (cityId) => {
       use: [laggy],
       revalidateIfStale: true,
       revalidateOnFocus: true,
-      refreshInterval: 1000 * 60 * 60, // 1 hour
     }
   )
 

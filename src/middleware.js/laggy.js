@@ -1,4 +1,4 @@
-import { useRef, useEffect, useCallback } from 'react'
+import { useRef, useEffect, useCallback } from "react"
 
 // This is a SWR middleware for keeping the data even if key changes.
 export default function laggy(useSWRNext) {
@@ -22,10 +22,12 @@ export default function laggy(useSWRNext) {
     }, [])
 
     // Fallback to previous data if the current data is undefined.
-    const dataOrLaggyData = swr.data === undefined ? laggyDataRef.current : swr.data
+    const dataOrLaggyData =
+      swr.data === undefined ? laggyDataRef.current : swr.data
 
     // Is it showing previous data?
-    const isLagging = swr.data === undefined && laggyDataRef.current !== undefined
+    const isLagging =
+      swr.data === undefined && laggyDataRef.current !== undefined
 
     // Also add a `isLagging` field to SWR.
     return Object.assign({}, swr, {
