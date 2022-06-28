@@ -6,7 +6,7 @@ import useWeather from "~/hooks/useWeather"
 
 const WeatherIcon = () => {
   const { city } = useCity()
-  const { weather, isLagging } = useWeather(city.id)
+  const { weather, isLoading } = useWeather(city.id)
   const icon = weatherCodeToIcon[weather?.weather[0]?.icon]
 
   const { width, height } = useViewportSize()
@@ -23,13 +23,13 @@ const WeatherIcon = () => {
         transition="scale"
         duration={400}
         timingFunction="ease"
-        mounted={!isLagging || !icon}
+        mounted={!isLoading || !icon}
       >
         {(styles) => (
           <div style={{ ...styles, perspective: 500 }}>
             <img
               src={icon && `weather/${icon}.png`}
-              width={260}
+              height={260}
               alt={icon}
               style={{
                 transform: `

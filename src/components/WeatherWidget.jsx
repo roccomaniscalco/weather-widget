@@ -11,7 +11,7 @@ const WeatherWidget = () => {
     <WidgetPaper>
       <Stack
         justify="space-between"
-        style={{ height: "480px", width: "400px" }}
+        style={{ height: "480px", width: "380px" }}
       >
         <Group position="apart" spacing="lg">
           <CityInput />

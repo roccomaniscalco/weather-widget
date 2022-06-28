@@ -24,7 +24,7 @@ const filterCities = (value, cities) => {
 
 const CityInput = () => {
   const { city, searchCity, searchedCities } = useCity()
-  const { isLagging } = useWeather(city.id)
+  const { isLoading } = useWeather(city.id)
   const [value, setValue] = useState(city.name)
   const filteredCities = useDeferredValue(filterCities(value, cities))
 
@@ -52,7 +52,7 @@ const CityInput = () => {
       onFocus={handleFocus}
       filter={(_value, item) => item} // hack to make the autocomplete work
       aria-label="City input"
-      rightSection={isLagging ? <Loader size="sm" /> : <Space />}
+      rightSection={isLoading ? <Loader size="sm" /> : <Space />}
     />
   )
 }
