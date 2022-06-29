@@ -3,7 +3,7 @@ import { node, string } from "prop-types"
 
 const WeatherDetailsItem = ({ icon, title, figure }) => {
   return (
-    <Group spacing="sm">
+    <Group spacing="sm" noWrap>
       {icon}
       <div>
         <Text size="xs" color="dimmed">

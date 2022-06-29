@@ -18,7 +18,7 @@ const WeatherWidget = () => {
           <Clock />
         </Group>
         <WeatherIcon />
-        <Group position="apart" align="end">
+        <Group position="apart" align="end" noWrap>
           <WeatherDetails />
           <WeatherSummary />
         </Group>
