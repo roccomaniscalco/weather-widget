@@ -1,9 +1,9 @@
 import { Loader } from "@mantine/core"
-import { startTransition, useState } from "react"
+import { useState } from "react"
 import { Search } from "tabler-icons-react"
 import {
   CityInputItem,
-  SearchedCityInputItem,
+  SearchedCityInputItem
 } from "~/components/CityInputItem"
 import WidgetAutocomplete from "~/components/WidgetAutocomplete"
 import citiesData from "~/constants/cities.json"
@@ -36,15 +36,11 @@ const CityInput = () => {
   const handleBlur = () => setValue(city.name)
   const handleFocus = () => setValue("")
   const handleChange = (newValue) => {
-    startTransition(() => {
-      setSearchResults(getSearchResults(newValue))
-    })
+    setSearchResults(getSearchResults(newValue))
     setValue(newValue)
   }
   const handleItemSubmit = (item) => {
-    startTransition(() => {
-      setSearchResults(getSearchResults(item.name))
-    })
+    setSearchResults(getSearchResults(item.name))
     searchCity(item)
     setValue(item.name)
   }
