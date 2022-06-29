@@ -8,11 +8,15 @@ import WidgetPaper from "~/components/WidgetPaper"
 
 const WeatherWidget = () => {
   return (
-    <WidgetPaper>
-      <Stack
-        justify="space-between"
-        style={{ height: "480px", width: "380px" }}
-      >
+    <WidgetPaper
+      sx={{
+        width: "100%",
+        height: "100%",
+        maxWidth: "420px",
+        maxHeight: "520px",
+      }}
+    >
+      <Stack justify="space-between" sx={{ height: "100%" }}>
         <Group position="apart" spacing="lg">
           <CityInput />
           <Clock />

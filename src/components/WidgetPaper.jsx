@@ -2,9 +2,9 @@ import { Paper } from "@mantine/core"
 import { node } from "prop-types"
 import React from "react"
 
-const WidgetPaper = ({ children }) => {
+const WidgetPaper = ({ children, ...props }) => {
   return (
-    <Paper withBorder p="xl" radius="lg">
+    <Paper withBorder p="xl" radius="lg" {...props}>
       {children}
     </Paper>
   )
