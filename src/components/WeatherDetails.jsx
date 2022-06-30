@@ -1,13 +1,11 @@
 import { SimpleGrid, Skeleton, useMantineTheme } from "@mantine/core"
 import { ArrowDownLeft, ArrowUpRight, Droplet, Wind } from "tabler-icons-react"
+import TempText from "~/components/TempText"
 import WeatherDetailsItem from "~/components/WeatherDetailsItem"
-import { useCity } from "~/contexts/CityContext"
-import useWeather from "~/hooks/useWeather"
-import { kelvinToFahrenheit } from "~/utils/convertKelvin"
+import { useWeather } from "~/contexts/WeatherContext"
 
 const WeatherDetails = () => {
-  const { city } = useCity()
-  const { weather } = useWeather(city.id)
+  const { weather } = useWeather()
   const theme = useMantineTheme()
 
   if (!weather) return <Skeleton sx={{ flex: 3 }} height={100} />
@@ -17,23 +15,27 @@ const WeatherDetails = () => {
       <WeatherDetailsItem
         icon={<ArrowUpRight color={theme.colors.green[5]} />}
         title="High"
-        figure={kelvinToFahrenheit(weather.main.temp_max) + "º"}
-      />
+      >
+        <TempText>{weather.main.temp_max}</TempText>
+      </WeatherDetailsItem>
       <WeatherDetailsItem
         icon={<ArrowDownLeft color={theme.colors.red[5]} />}
         title="Low"
-        figure={kelvinToFahrenheit(weather.main.temp_min) + "º"}
-      />
+      >
+        <TempText>{weather.main.temp_min}</TempText>
+      </WeatherDetailsItem>
       <WeatherDetailsItem
         icon={<Wind color={theme.colors.gray[5]} />}
         title="Wind"
-        figure={Math.round(weather.wind.speed) + "m/s"}
-      />
+      >
+        {Math.round(weather.wind.speed) + "m/s"}
+      </WeatherDetailsItem>
       <WeatherDetailsItem
         icon={<Droplet color={theme.colors.blue[5]} />}
         title="Humidity"
-        figure={weather.main.humidity + "%"}
-      />
+      >
+        {weather.main.humidity + "%"}
+      </WeatherDetailsItem>
     </SimpleGrid>
   )
 }

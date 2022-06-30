@@ -1,7 +1,7 @@
 import useSWR from "swr"
 import laggy from "~/middleware.js/laggy"
 
-const useWeather = (cityId) => {
+const useWeatherData = (cityId) => {
   const { data, isValidating, isLagging } = useSWR(
     cityId &&
       `https://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=${
@@ -17,4 +17,4 @@ const useWeather = (cityId) => {
   return { weather: data, isLoading: isValidating || isLagging }
 }
 
-export default useWeather
+export default useWeatherData

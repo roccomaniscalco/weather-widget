@@ -1,7 +1,7 @@
 import { Group, Text } from "@mantine/core"
 import { node, string } from "prop-types"
 
-const WeatherDetailsItem = ({ icon, title, figure }) => {
+const WeatherDetailsItem = ({ icon, title, children }) => {
   return (
     <Group spacing="xs" noWrap>
       {icon}
@@ -9,7 +9,7 @@ const WeatherDetailsItem = ({ icon, title, figure }) => {
         <Text size="xs" color="dimmed">
           {title}
         </Text>
-        <Text size="md">{figure}</Text>
+        <Text size="md">{children}</Text>
       </div>
     </Group>
   )
@@ -18,7 +18,7 @@ const WeatherDetailsItem = ({ icon, title, figure }) => {
 WeatherDetailsItem.propTypes = {
   icon: node.isRequired,
   title: string.isRequired,
-  figure: string.isRequired,
+  children: node.isRequired,
 }
 
 export default WeatherDetailsItem

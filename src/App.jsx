@@ -1,6 +1,6 @@
 import { Center } from "@mantine/core"
 import WeatherWidget from "~/components/WeatherWidget"
-import { CityProvider } from "~/contexts/CityContext"
+import { WeatherProvider } from "~/contexts/WeatherContext"
 import SwrConfigProvider from "~/contexts/SwrConfigProvider"
 import ThemeProvider from "~/contexts/ThemeProvider"
 
@@ -8,11 +8,11 @@ const App = () => {
   return (
     <SwrConfigProvider>
       <ThemeProvider>
-        <CityProvider>
+        <WeatherProvider>
           <Center style={{ height: "100vh" }}>
             <WeatherWidget />
           </Center>
-        </CityProvider>
+        </WeatherProvider>
       </ThemeProvider>
     </SwrConfigProvider>
   )

@@ -1,8 +1,7 @@
 import { Skeleton, Text } from "@mantine/core"
 import { useInterval } from "@mantine/hooks"
 import { useEffect, useState } from "react"
-import { useCity } from "~/contexts/CityContext"
-import useWeather from "~/hooks/useWeather"
+import { useWeather } from "~/contexts/WeatherContext"
 
 const applyTimezoneOffset = (date, offsetSec) => {
   const timezoneDifference = offsetSec / 60 + date.getTimezoneOffset()
@@ -10,8 +9,7 @@ const applyTimezoneOffset = (date, offsetSec) => {
 }
 
 const Clock = () => {
-  const { city } = useCity()
-  const { weather } = useWeather(city.id)
+  const { weather } = useWeather()
   const [date, setDate] = useState(new Date())
 
   const clock = useInterval(() => {
@@ -26,7 +24,7 @@ const Clock = () => {
   if (!weather) return <Skeleton width={86} height="100%" radius="xl" />
 
   return (
-    <Text size="lg" align="right" style={{ width: 86 }}>
+    <Text size="xs" color="dimmed">
       {applyTimezoneOffset(date, weather.timezone).toLocaleTimeString("en-US", {
         hour: "2-digit",
         minute: "2-digit",

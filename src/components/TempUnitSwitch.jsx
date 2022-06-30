@@ -1,28 +1,34 @@
-import { SegmentedControl } from "@mantine/core"
+import { SegmentedControl, useMantineTheme } from "@mantine/core"
 import React from "react"
+import { useWeather } from "~/contexts/WeatherContext"
 
 const TempUnitSwitch = () => {
+  const theme = useMantineTheme()
+  const { tempUnit, setTempUnit } = useWeather()
+
   const data = [
-    {
-      value: "c",
-      label: "ºC",
-    },
     {
       value: "f",
       label: "ºF",
+    },
+    {
+      value: "c",
+      label: "ºC",
     },
   ]
 
   return (
     <SegmentedControl
+      data={data}
+      value={tempUnit}
+      onChange={setTempUnit}
       size="xs"
       radius="xl"
-      orientation="vertical"
-      data={data}
+      color="indigo"
       sx={{
-        position: "absolute",
-        bottom: 0,
-        left: 0,
+        backgroundColor: theme.colors.dark[6],
+        border: `5px solid ${theme.colors.dark[6]}`,
+        height: "100%",
       }}
     />
   )

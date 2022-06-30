@@ -8,8 +8,7 @@ import {
 import WidgetAutocomplete from "~/components/WidgetAutocomplete"
 import citiesData from "~/constants/cities.json"
 import isoToCountry from "~/constants/isoToCountry"
-import { useCity } from "~/contexts/CityContext"
-import useWeather from "~/hooks/useWeather"
+import { useWeather } from "~/contexts/WeatherContext"
 import removeDiacritics from "~/utils/removeDiacritics"
 
 const cities = citiesData.map((city) => ({
@@ -41,8 +40,7 @@ const constructValue = (city) =>
   }`
 
 const CityInput = () => {
-  const { city, searchCity, searchedCities } = useCity()
-  const { isLoading } = useWeather(city.id)
+  const { city, setCity, searchedCities, isLoading } = useWeather()
   const [value, setValue] = useState(constructValue(city))
   const [searchResults, setSearchResults] = useState(cities)
 
@@ -54,7 +52,7 @@ const CityInput = () => {
   }
   const handleItemSubmit = (item) => {
     startTransition(() => setSearchResults(getSearchResults(item.name)))
-    searchCity(item)
+    setCity(item)
     setValue(constructValue(item))
   }
 

@@ -1,6 +1,7 @@
 import { useLocalStorage } from "@mantine/hooks"
 import { node } from "prop-types"
 import { createContext, useCallback, useContext } from "react"
+import useWeatherData from "~/hooks/useWeatherData"
 
 const defaultCity = {
   id: 4180439,
@@ -14,9 +15,9 @@ const defaultCity = {
   },
 }
 
-const CityContext = createContext()
+const WeatherContext = createContext()
 
-const CityProvider = ({ children }) => {
+const WeatherProvider = ({ children }) => {
   const [city, setCity] = useLocalStorage({
     key: "city",
     defaultValue: defaultCity,
@@ -27,7 +28,12 @@ const CityProvider = ({ children }) => {
     defaultValue: [defaultCity],
   })
 
-  const searchCity = useCallback(
+  const [tempUnit, setTempUnit] = useLocalStorage({
+    key: "tempUnit",
+    defaultValue: "f",
+  })
+
+  const setCityAndSearchedCities = useCallback(
     (city) => {
       const newSearchedCities = Array.from(searchedCities).reverse()
 
@@ -45,23 +51,32 @@ const CityProvider = ({ children }) => {
     [searchedCities, setSearchedCities, setCity]
   )
 
-  const cityValue = { city, searchCity, searchedCities }
+  const weatherValue = {
+    city,
+    setCity: setCityAndSearchedCities,
+    tempUnit,
+    setTempUnit,
+    searchedCities,
+  }
 
   return (
-    <CityContext.Provider value={cityValue}>{children}</CityContext.Provider>
+    <WeatherContext.Provider value={weatherValue}>
+      {children}
+    </WeatherContext.Provider>
   )
 }
 
-CityProvider.propTypes = {
+WeatherProvider.propTypes = {
   children: node,
 }
 
-const useCity = () => {
-  const cityContext = useContext(CityContext)
-  if (!cityContext) {
+const useWeather = () => {
+  const weatherContext = useContext(WeatherContext)
+  if (!weatherContext)
     throw new Error("useCity must be used within a CityProvider")
-  }
-  return cityContext
+
+  const weatherData = useWeatherData(weatherContext.city.id)
+  return { ...weatherContext, ...weatherData }
 }
 
-export { CityProvider, useCity }
+export { WeatherProvider, useWeather }
