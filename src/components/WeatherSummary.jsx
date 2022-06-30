@@ -10,8 +10,8 @@ const WeatherSummary = () => {
   if (!weather) return <Skeleton sx={{ flex: 2 }} height={100} />
 
   return (
-    <Stack spacing="xs" sx={{ maxWidth: 160 }}>
-      <Text align="right" style={{ fontSize: 64, lineHeight: 1 }}>
+    <Stack spacing="xs" align="end" sx={{ maxWidth: 160 }}>
+      <Text style={{ fontSize: 64, lineHeight: 1 }}>
         {kelvinToFahrenheit(weather.main.temp)}º
       </Text>
       <Text size="md" color="dimmed" align="right">
