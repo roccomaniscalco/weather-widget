@@ -10,7 +10,7 @@ const WeatherWidget = () => {
   return (
     <WidgetPaper sx={{ width: "400px", height: "500px" }}>
       <Stack sx={{ height: "100%" }}>
-        <Group spacing="xs">
+        <Group >
           <CityInput />
           <TempUnitSwitch />
         </Group>
