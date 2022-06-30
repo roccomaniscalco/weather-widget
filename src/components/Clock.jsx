@@ -23,7 +23,7 @@ const Clock = () => {
     return clock.stop()
   }, [])
 
-  if (!weather) return <Skeleton width={86} height="100%" radius="xl"/>
+  if (!weather) return <Skeleton width={86} height="100%" radius="xl" />
 
   return (
     <Text size="lg" align="right" style={{ width: 86 }}>

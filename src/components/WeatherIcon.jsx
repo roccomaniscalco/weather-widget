@@ -22,7 +22,7 @@ const WeatherIcon = () => {
       >
         {(styles) => (
           <PerspectiveBox styles={styles}>
-            <img src={icon && `weather/${icon}.png`} height={240} alt={icon} />
+            <img src={icon && `weather/${icon}.png`} height={230} alt={icon} />
           </PerspectiveBox>
         )}
       </Transition>

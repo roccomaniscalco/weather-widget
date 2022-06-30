@@ -25,14 +25,14 @@ const WeatherDetails = () => {
         figure={kelvinToFahrenheit(weather.main.temp_min) + "º"}
       />
       <WeatherDetailsItem
+        icon={<Wind color={theme.colors.gray[5]} />}
+        title="Wind"
+        figure={Math.round(weather.wind.speed) + " m/s"}
+      />
+      <WeatherDetailsItem
         icon={<Droplet color={theme.colors.blue[5]} />}
         title="Humidity"
         figure={weather.main.humidity + "%"}
-      />
-      <WeatherDetailsItem
-        icon={<Wind color={theme.colors.gray[5]} />}
-        title="Wind"
-        figure={weather.wind.speed + " m/s"}
       />
     </SimpleGrid>
   )

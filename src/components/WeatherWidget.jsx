@@ -12,8 +12,8 @@ const WeatherWidget = () => {
       sx={{
         width: "100%",
         height: "100%",
-        maxWidth: "420px",
-        maxHeight: "520px",
+        maxWidth: "400px",
+        maxHeight: "500px",
       }}
     >
       <Stack justify="space-between" sx={{ height: "100%" }}>
