@@ -1,9 +1,9 @@
 import { Loader } from "@mantine/core"
-import { useState } from "react"
+import { startTransition, useState } from "react"
 import { Search } from "tabler-icons-react"
 import {
   CityInputItem,
-  SearchedCityInputItem
+  SearchedCityInputItem,
 } from "~/components/CityInputItem"
 import WidgetAutocomplete from "~/components/WidgetAutocomplete"
 import citiesData from "~/constants/cities.json"
@@ -12,37 +12,50 @@ import { useCity } from "~/contexts/CityContext"
 import useWeather from "~/hooks/useWeather"
 import removeDiacritics from "~/utils/removeDiacritics"
 
-const cities = citiesData.map((city) => ({ value: `${city.id}`, ...city }))
+const cities = citiesData.map((city) => ({
+  value: city.id.toString(),
+  ...city,
+}))
 
 const getSearchResults = (value) => {
-  const keyWords = removeDiacritics(value).toLowerCase().trim().split(" ")
+  const keyWords = removeDiacritics(value)
+    .toUpperCase()
+    .replace(/\s+/g, " ") // remove extra spaces
+    .replace(/,/g, "") // remove commas
+    .split(" ")
 
   return cities.filter((city) =>
     keyWords.every(
       (word) =>
-        removeDiacritics(city.name).toLowerCase().includes(word) ||
-        city.state.toLowerCase().includes(word) ||
-        isoToCountry[city.country]?.name?.toLowerCase()?.includes(word)
+        removeDiacritics(city.name).toUpperCase().includes(word) ||
+        city.state.includes(word) ||
+        isoToCountry[city.country]?.name?.toUpperCase()?.includes(word) ||
+        city.country.includes(word)
     )
   )
 }
 
+const constructValue = (city) =>
+  `${city.name}${city.state && ", "}${city.state}${city.country && ", "}${
+    city.country
+  }`
+
 const CityInput = () => {
   const { city, searchCity, searchedCities } = useCity()
   const { isLoading } = useWeather(city.id)
-  const [value, setValue] = useState(city.name)
+  const [value, setValue] = useState(constructValue(city))
   const [searchResults, setSearchResults] = useState(cities)
 
-  const handleBlur = () => setValue(city.name)
+  const handleBlur = () => setValue(constructValue(city))
   const handleFocus = () => setValue("")
   const handleChange = (newValue) => {
-    setSearchResults(getSearchResults(newValue))
+    startTransition(() => setSearchResults(getSearchResults(newValue)))
     setValue(newValue)
   }
   const handleItemSubmit = (item) => {
-    setSearchResults(getSearchResults(item.name))
+    startTransition(() => setSearchResults(getSearchResults(item.name)))
     searchCity(item)
-    setValue(item.name)
+    setValue(constructValue(item))
   }
 
   return (

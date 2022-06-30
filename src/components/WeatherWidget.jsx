@@ -17,7 +17,7 @@ const WeatherWidget = () => {
       }}
     >
       <Stack justify="space-between" sx={{ height: "100%" }}>
-        <Group position="apart" spacing="lg">
+        <Group position="apart">
           <CityInput />
           <Clock />
         </Group>

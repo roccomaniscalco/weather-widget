@@ -23,10 +23,10 @@ const Clock = () => {
     return clock.stop()
   }, [])
 
-  if (!weather) return <Skeleton width={82} height="100%" />
+  if (!weather) return <Skeleton width={86} height="100%" radius="xl"/>
 
   return (
-    <Text size="lg" align="right" style={{ width: 82 }}>
+    <Text size="lg" align="right" style={{ width: 86 }}>
       {applyTimezoneOffset(date, weather.timezone).toLocaleTimeString("en-US", {
         hour: "2-digit",
         minute: "2-digit",
