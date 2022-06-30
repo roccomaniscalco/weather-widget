@@ -16,12 +16,10 @@ const WeatherSummary = () => {
       sx={{ height: "100%" }}
     >
       <Clock />
-      <div>
-        <TempText style={{ fontSize: 48, lineHeight: 1 }}>
-          {weather.main.temp}
-        </TempText>
-        <Text size="md">{weather.weather[0].description}</Text>
-      </div>
+      <TempText style={{ fontSize: 48, lineHeight: 1 }}>
+        {weather.main.temp}
+      </TempText>
+      <Text size="md">{weather.weather[0].description}</Text>
     </Stack>
   )
 }
