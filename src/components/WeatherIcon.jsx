@@ -1,5 +1,5 @@
 import { Center, Skeleton, Transition } from "@mantine/core"
-import { useMouse, useViewportSize } from "@mantine/hooks"
+import PerspectiveBox from "~/components/PerspectiveBox"
 import weatherCodeToIcon from "~/constants/weatherCodeToIcon"
 import { useCity } from "~/contexts/CityContext"
 import useWeather from "~/hooks/useWeather"
@@ -8,12 +8,6 @@ const WeatherIcon = () => {
   const { city } = useCity()
   const { weather, isLoading } = useWeather(city.id)
   const icon = weatherCodeToIcon[weather?.weather[0]?.icon]
-
-  const { width, height } = useViewportSize()
-  const { x, y } = useMouse()
-  const center = { x: width / 2, y: height / 2 }
-  const rotateY = (x - center.x) / (center.x / 20)
-  const rotateX = (y - center.y) / (center.y / 20)
 
   if (!icon) return <Skeleton sx={{ flex: 1 }} />
 
@@ -26,18 +20,9 @@ const WeatherIcon = () => {
         mounted={!isLoading || !icon}
       >
         {(styles) => (
-          <div style={{ perspective: 400, ...styles }}>
-            <img
-              src={icon && `weather/${icon}.png`}
-              height={260}
-              alt={icon}
-              style={{
-                transform: `
-                rotateX(${rotateX}deg) 
-                rotateY(${rotateY}deg)`,
-              }}
-            />
-          </div>
+          <PerspectiveBox styles={styles}>
+            <img src={icon && `weather/${icon}.png`} height={240} alt={icon} />
+          </PerspectiveBox>
         )}
       </Transition>
     </Center>
