@@ -1,4 +1,5 @@
 import { Center, Skeleton, Transition } from "@mantine/core"
+import { useDeferredValue } from "react"
 import PerspectiveBox from "~/components/PerspectiveBox"
 import weatherCodeToIcon from "~/constants/weatherCodeToIcon"
 import { useCity } from "~/contexts/CityContext"
@@ -7,7 +8,7 @@ import useWeather from "~/hooks/useWeather"
 const WeatherIcon = () => {
   const { city } = useCity()
   const { weather, isLoading } = useWeather(city.id)
-  const icon = weatherCodeToIcon[weather?.weather[0]?.icon]
+  const icon = useDeferredValue(weatherCodeToIcon[weather?.weather[0]?.icon])
 
   if (!icon) return <Skeleton sx={{ flex: 1 }} />
 
