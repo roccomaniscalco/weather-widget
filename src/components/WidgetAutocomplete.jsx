@@ -1,59 +1,34 @@
 import { Autocomplete, createStyles } from "@mantine/core"
-import { useFocusWithin } from "@mantine/hooks"
-import { useState } from "react"
 
 const useStyles = createStyles((theme) => ({
-  Autocomplete: {
-    ".mantine-Autocomplete-filledVariant": {
-      backgroundColor: theme.colorScheme === "dark" && theme.colors.dark[6],
+  root: {
+    "& [aria-expanded=true] .mantine-Autocomplete-input": {
+      borderTopLeftRadius: theme.radius.lg,
+      borderTopRightRadius: theme.radius.lg,
+      borderBottomLeftRadius: 0,
+      borderBottomRightRadius: 0,
     },
   },
 
-  focused: {
-    ".mantine-Autocomplete-filledVariant.mantine-Autocomplete-input": {
-      border: "none",
-    },
-    ".mantine-Autocomplete-icon": {
+  wrapper: {
+    "&:focus-within .mantine-Autocomplete-icon": {
       color: theme.colors.blue[5],
     },
   },
 
-  open: {
-    ".mantine-Autocomplete-input": {
-      borderTopLeftRadius: theme.radius.lg,
-      borderTopRightRadius: theme.radius.lg,
-      borderBottomLeftRadius: theme.radius.sm,
-      borderBottomRightRadius: theme.radius.sm,
-    },
-  },
+  input: {
+    backgroundColor: theme.colorScheme === "dark" && theme.colors.dark[6],
+    borderRadius: theme.radius.xl,
 
-  closed: {
-    ".mantine-Autocomplete-input": {
-      borderRadius: theme.radius.xl,
+    "&:focus": {
+      border: "none",
     },
   },
 }))
 
 const WidgetAutocomplete = (props) => {
-  const { classes, cx } = useStyles()
-  const { ref, focused } = useFocusWithin()
-  const [isOpen, setIsOpen] = useState(false)
-  const handleDropdownOpen = () => setIsOpen(true)
-  const handleDropdownClose = () => setIsOpen(false)
-
-  return (
-    <Autocomplete
-      {...props}
-      ref={ref}
-      className={cx(
-        classes.Autocomplete,
-        focused && classes.focused,
-        isOpen ? classes.open : classes.closed
-      )}
-      onDropdownOpen={handleDropdownOpen}
-      onDropdownClose={handleDropdownClose}
-    />
-  )
+  const { classes } = useStyles()
+  return <Autocomplete classNames={classes} {...props} />
 }
 
 export default WidgetAutocomplete
