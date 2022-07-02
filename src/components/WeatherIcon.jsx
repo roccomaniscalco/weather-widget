@@ -37,7 +37,7 @@ const WeatherIcon = () => {
               width={250}
               style={styles}
               withPlaceholder
-              placeholder={<Loader size="xl" variant="dots" />}
+              placeholder={<Loader size="xl" variant="bars" />}
               styles={{
                 placeholder: {
                   background:
