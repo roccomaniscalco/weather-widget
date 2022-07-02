@@ -35,10 +35,13 @@ const WeatherIcon = () => {
               src={debouncedIcon && `weather/${debouncedIcon}.png`}
               alt={debouncedIcon}
               width={250}
-              style={styles}
               withPlaceholder
               placeholder={<Loader size="xl" variant="bars" />}
+              style={styles}
               styles={{
+                root: {
+                  filter: "drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.3))",
+                },
                 placeholder: {
                   background:
                     theme.colorScheme === "dark"

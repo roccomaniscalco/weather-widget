@@ -6,7 +6,14 @@ const ThemeProvider = ({ children }) => {
     <MantineProvider
       withNormalizeCSS
       withGlobalStyles
-      theme={{ colorScheme: "dark" }}
+      theme={{ colorScheme: "light" }}
+      styles={{
+        Paper: (theme) => ({
+          root: {
+            boxShadow: theme.colorScheme === "light" && theme.shadows.lg,
+          },
+        }),
+      }}
     >
       <Global
         styles={(theme) => ({
