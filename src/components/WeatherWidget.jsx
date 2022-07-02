@@ -15,7 +15,14 @@ const WeatherWidget = () => {
           <TempUnitSwitch />
         </Group>
         <WeatherIcon />
-        <Group position="apart" align="end" noWrap>
+        <Group
+          position="apart"
+          noWrap
+          sx={{
+            maxHeight: "97px",
+            alignItems: "flex-end" /* safari fix */,
+          }}
+        >
           <WeatherDetails />
           <WeatherSummary />
         </Group>

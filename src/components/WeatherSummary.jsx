@@ -10,10 +10,9 @@ const WeatherSummary = () => {
 
   return (
     <Stack
-      spacing={0}
-      align="end"
+      spacing={4}
       justify="space-between"
-      sx={{ height: "100%" }}
+      sx={{ maxWidth: 130, textAlign: "right" }}
     >
       <Clock />
       <TempText style={{ fontSize: 48, lineHeight: 1 }}>
