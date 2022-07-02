@@ -14,7 +14,7 @@ const useWeatherData = (cityId) => {
     }
   )
 
-  return { weather: data, isLoading: isValidating || isLagging }
+  return { weather: data, isValidating, isLagging }
 }
 
 export default useWeatherData

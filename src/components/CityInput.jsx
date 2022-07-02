@@ -20,7 +20,7 @@ const getSearchResults = (value) => {
   const keyWords = removeDiacritics(value)
     .toUpperCase()
     .replace(/\s+/g, " ") // remove extra spaces
-    .replace(/,/g, "") // remove commas
+    .replace(",", "") // remove commas
     .split(" ")
 
   return cities.filter((city) =>
@@ -40,7 +40,8 @@ const constructValue = (city) =>
   }`
 
 const CityInput = () => {
-  const { city, setCity, searchedCities, isLoading } = useWeather()
+  const { city, setCity, searchedCities, isLagging, isValidating } =
+    useWeather()
   const [value, setValue] = useState(constructValue(city))
   const [searchResults, setSearchResults] = useState(cities)
 
@@ -63,7 +64,7 @@ const CityInput = () => {
       placeholder="Search for a city"
       nothingFound="No cities found"
       icon={<Search size={16} />}
-      rightSection={isLoading && <Loader size="sm" />}
+      rightSection={(isLagging || isValidating) && <Loader size="sm" />}
       value={value}
       data={value === "" ? searchedCities : searchResults}
       itemComponent={value === "" ? SearchedCityInputItem : CityInputItem}

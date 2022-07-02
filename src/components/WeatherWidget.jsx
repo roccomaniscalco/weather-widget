@@ -1,4 +1,4 @@
-import { Center, Group, Stack } from "@mantine/core"
+import { Group, Stack } from "@mantine/core"
 import CityInput from "~/components/CityInput"
 import TempUnitSwitch from "~/components/TempUnitSwitch"
 import WeatherDetails from "~/components/WeatherDetails"
@@ -9,14 +9,12 @@ import WidgetPaper from "~/components/WidgetPaper"
 const WeatherWidget = () => {
   return (
     <WidgetPaper sx={{ width: "400px", height: "500px" }}>
-      <Stack sx={{ height: "100%" }}>
+      <Stack justify="space-between" sx={{ height: "100%" }}>
         <Group spacing="xs">
           <CityInput />
           <TempUnitSwitch />
         </Group>
-        <Center style={{ flex: 1 }}>
-          <WeatherIcon />
-        </Center>
+        <WeatherIcon />
         <Group position="apart" align="end" noWrap>
           <WeatherDetails />
           <WeatherSummary />
