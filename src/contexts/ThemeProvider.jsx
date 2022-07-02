@@ -10,6 +10,10 @@ const ThemeProvider = ({ children }) => {
       styles={{
         Paper: (theme) => ({
           root: {
+            backgroundColor:
+              theme.colorScheme === "light"
+                ? theme.colors.gray[1]
+                : theme.colors.dark[7],
             boxShadow: theme.colorScheme === "light" && theme.shadows.lg,
           },
         }),

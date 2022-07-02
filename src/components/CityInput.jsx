@@ -53,6 +53,7 @@ const CityInput = () => {
   return (
     <WidgetAutocomplete
       sx={{ flex: 1 }}
+      variant="filled"
       size="md"
       placeholder="Search for a city"
       nothingFound="No cities found"

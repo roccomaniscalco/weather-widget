@@ -17,9 +17,14 @@ const useStyles = createStyles((theme) => ({
   },
 
   input: {
-    backgroundColor: theme.colorScheme === "dark" && theme.colors.dark[6],
     borderRadius: theme.radius.xl,
+  },
 
+  filledVariant: {
+    backgroundColor:
+      theme.colorScheme === "dark"
+        ? theme.colors.dark[6]
+        : theme.colors.gray[3],
     "&:focus": {
       border: "none",
     },

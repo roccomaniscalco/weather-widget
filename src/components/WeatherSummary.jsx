@@ -10,7 +10,7 @@ const WeatherSummary = () => {
 
   return (
     <Stack
-      spacing={4}
+      spacing={2}
       justify="space-between"
       sx={{ maxWidth: 130, textAlign: "right" }}
     >

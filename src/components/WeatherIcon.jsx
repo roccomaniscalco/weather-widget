@@ -40,7 +40,7 @@ const WeatherIcon = () => {
               style={styles}
               styles={{
                 root: {
-                  filter: "drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.3))",
+                  filter: "drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.4))",
                 },
                 placeholder: {
                   background:

@@ -1,17 +1,30 @@
-import { Center, SegmentedControl, useMantineTheme } from "@mantine/core"
-import React from "react"
+import { Center, createStyles, SegmentedControl } from "@mantine/core"
 import { TemperatureCelsius, TemperatureFahrenheit } from "tabler-icons-react"
 import { useWeather } from "~/contexts/WeatherContext"
 
+const useStyles = createStyles((theme) => ({
+  root: {
+    backgroundColor:
+      theme.colorScheme === "dark"
+        ? theme.colors.dark[6]
+        : theme.colors.gray[3],
+    border:
+      theme.colorScheme === "dark"
+        ? `2px solid ${theme.colors.dark[6]}`
+        : `2px solid ${theme.colors.gray[3]}`,
+    height: "100%",
+  },
+}))
+
 const TempUnitSwitch = () => {
-  const theme = useMantineTheme()
+  const { classes } = useStyles()
   const { tempUnit, setTempUnit } = useWeather()
 
   const data = [
     {
       value: "f",
       label: (
-        <Center>
+        <Center py={3}>
           <TemperatureFahrenheit size={18} />
         </Center>
       ),
@@ -19,7 +32,7 @@ const TempUnitSwitch = () => {
     {
       value: "c",
       label: (
-        <Center>
+        <Center py={3}>
           <TemperatureCelsius size={18} />
         </Center>
       ),
@@ -34,11 +47,7 @@ const TempUnitSwitch = () => {
       size="xs"
       radius="xl"
       color="indigo"
-      sx={{
-        backgroundColor: theme.colors.dark[6],
-        border: `5px solid ${theme.colors.dark[6]}`,
-        height: "100%",
-      }}
+      classNames={classes}
     />
   )
 }
