@@ -1,16 +1,15 @@
-import { Box } from "@mantine/core"
 import { useMouse, useViewportSize } from "@mantine/hooks"
-import { node, object } from "prop-types"
+import { node } from "prop-types"
 
-const PerspectiveBox = ({ children, styles }) => {
+const PerspectiveBox = ({ children }) => {
   const { width, height } = useViewportSize()
   const { x, y } = useMouse()
   const center = { x: width / 2, y: height / 2 }
   const rotateY = (x - center.x) / (center.x / 20)
-  const rotateX = (y - center.y) / (center.y / 20)
+  const rotateX = -(y - center.y) / (center.y / 20)
 
   return (
-    <Box style={{ perspective: 400, ...styles }}>
+    <div style={{ perspective: 400 }}>
       <div
         style={{
           transform: `
@@ -20,13 +19,12 @@ const PerspectiveBox = ({ children, styles }) => {
       >
         {children}
       </div>
-    </Box>
+    </div>
   )
 }
 
 PerspectiveBox.propTypes = {
   children: node,
-  styles: object,
 }
 
 export default PerspectiveBox
