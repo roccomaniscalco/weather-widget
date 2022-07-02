@@ -4,7 +4,7 @@ import { forwardRef } from "react"
 import { History } from "tabler-icons-react"
 import isoToCountry from "~/constants/isoToCountry"
 
-export const CityInputItem = forwardRef(
+export const CityAutocompleteItem = forwardRef(
   ({ name, state, country, hasBeenSearched, ...props }, ref) => (
     <div ref={ref} {...props}>
       <Group noWrap>
@@ -26,16 +26,16 @@ export const CityInputItem = forwardRef(
   )
 )
 
-CityInputItem.displayName = "CityInputItem"
-CityInputItem.propTypes = {
+CityAutocompleteItem.displayName = "CityAutocompleteItem"
+CityAutocompleteItem.propTypes = {
   name: string.isRequired,
   state: string,
   country: string.isRequired,
   hasBeenSearched: bool,
 }
 
-export const SearchedCityInputItem = forwardRef((props, ref) => (
-  <CityInputItem ref={ref} {...props} hasBeenSearched />
+export const SearchedCityAutocompleteItem = forwardRef((props, ref) => (
+  <CityAutocompleteItem ref={ref} {...props} hasBeenSearched />
 ))
 
-SearchedCityInputItem.displayName = "SearchedCityInputItem"
+SearchedCityAutocompleteItem.displayName = "SearchedCityAutocompleteItem"

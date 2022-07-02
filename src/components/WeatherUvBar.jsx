@@ -5,6 +5,7 @@ const WeatherUvBar = () => {
   return (
     <Box
       sx={(theme) => ({
+        borderRadius: theme.radius.xl,
         height: 6,
         background: theme.fn.linearGradient(
           90,

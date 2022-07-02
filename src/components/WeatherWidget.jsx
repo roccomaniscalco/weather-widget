@@ -1,5 +1,5 @@
 import { Group, Paper, Stack } from "@mantine/core"
-import CityInput from "~/components/CityInput"
+import CityAutocomplete from "~/components/CityAutocomplete"
 import TempUnitSwitch from "~/components/TempUnitSwitch"
 import WeatherDetails from "~/components/WeatherDetails"
 import WeatherIcon from "~/components/WeatherIcon"
@@ -7,10 +7,10 @@ import WeatherSummary from "~/components/WeatherSummary"
 
 const WeatherWidget = () => {
   return (
-    <Paper radius="xl"  sx={{ width: "400px", height: "500px" }}>
+    <Paper radius="xl" sx={{ width: "400px", height: "500px" }}>
       <Stack justify="space-between" p="xl" sx={{ height: "100%" }}>
         <Group spacing="xs">
-          <CityInput />
+          <CityAutocomplete />
           <TempUnitSwitch />
         </Group>
         <WeatherIcon />

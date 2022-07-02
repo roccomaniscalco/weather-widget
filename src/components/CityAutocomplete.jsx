@@ -2,9 +2,9 @@ import { Loader } from "@mantine/core"
 import { startTransition, useState } from "react"
 import { Search } from "tabler-icons-react"
 import {
-  CityInputItem,
-  SearchedCityInputItem,
-} from "~/components/CityInputItem"
+  CityAutocompleteItem,
+  SearchedCityAutocompleteItem,
+} from "~/components/CityAutocompleteItem"
 import WidgetAutocomplete from "~/components/WidgetAutocomplete"
 import cities from "~/constants/cities.json"
 import isoToCountry from "~/constants/isoToCountry"
@@ -32,7 +32,7 @@ const getSearchResults = (value) => {
 const constructValue = ({name, state, country}) =>
   `${name}${state ? `, ${state}` : ""}, ${country}`
 
-const CityInput = () => {
+const CityAutocomplete = () => {
   const { city, setCity, searchedCities, isLagging, isValidating } =
     useWeather()
   const [value, setValue] = useState(constructValue(city))
@@ -61,7 +61,7 @@ const CityInput = () => {
       rightSection={(isLagging || isValidating) && <Loader size="sm" />}
       value={value}
       data={value === "" ? searchedCities : searchResults}
-      itemComponent={value === "" ? SearchedCityInputItem : CityInputItem}
+      itemComponent={value === "" ? SearchedCityAutocompleteItem : CityAutocompleteItem}
       onChange={handleChange}
       onItemSubmit={handleItemSubmit}
       onBlur={handleBlur}
@@ -72,4 +72,4 @@ const CityInput = () => {
   )
 }
 
-export default CityInput
+export default CityAutocomplete
