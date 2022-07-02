@@ -1,5 +1,6 @@
-import { SegmentedControl, useMantineTheme } from "@mantine/core"
+import { Center, SegmentedControl, useMantineTheme } from "@mantine/core"
 import React from "react"
+import { TemperatureCelsius, TemperatureFahrenheit } from "tabler-icons-react"
 import { useWeather } from "~/contexts/WeatherContext"
 
 const TempUnitSwitch = () => {
@@ -9,11 +10,19 @@ const TempUnitSwitch = () => {
   const data = [
     {
       value: "f",
-      label: "ºF",
+      label: (
+        <Center>
+          <TemperatureFahrenheit size={18} />
+        </Center>
+      ),
     },
     {
       value: "c",
-      label: "ºC",
+      label: (
+        <Center>
+          <TemperatureCelsius size={18} />
+        </Center>
+      ),
     },
   ]
 
