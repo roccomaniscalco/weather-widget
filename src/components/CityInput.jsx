@@ -20,7 +20,7 @@ const getSearchResults = (value) => {
   const keyWords = removeDiacritics(value)
     .toUpperCase()
     .replace(/\s+/g, " ") // remove extra spaces
-    .replace(",", "") // remove commas
+    .replaceAll(",", "") // remove commas
     .split(" ")
 
   return cities.filter((city) =>
