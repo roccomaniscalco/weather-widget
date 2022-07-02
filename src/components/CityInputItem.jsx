@@ -8,12 +8,12 @@ export const CityInputItem = forwardRef(
   ({ name, state, country, hasBeenSearched, ...props }, ref) => (
     <div ref={ref} {...props}>
       <Group noWrap>
-        <Text size="lg">{isoToCountry[country]?.flag}</Text>
+        <Text size="lg">{isoToCountry[country].flag}</Text>
         <div style={{ flex: 1 }}>
           <Text>{name}</Text>
           <Text size="xs" color="dimmed">
             {state && `${state}, `}
-            {isoToCountry[country]?.name}
+            {isoToCountry[country].name}
           </Text>
         </div>
         {hasBeenSearched && (
@@ -29,7 +29,7 @@ export const CityInputItem = forwardRef(
 CityInputItem.displayName = "CityInputItem"
 CityInputItem.propTypes = {
   name: string.isRequired,
-  state: string.isRequired,
+  state: string,
   country: string.isRequired,
   hasBeenSearched: bool,
 }

@@ -4,15 +4,10 @@ import { createContext, useCallback, useContext } from "react"
 import useWeatherData from "~/hooks/useWeatherData"
 
 const defaultCity = {
-  id: 4180439,
   value: "4180439",
   name: "Atlanta",
   state: "GA",
   country: "US",
-  coord: {
-    lon: -84.387978,
-    lat: 33.749001,
-  },
 }
 
 const WeatherContext = createContext()
@@ -38,7 +33,7 @@ const WeatherProvider = ({ children }) => {
       const newSearchedCities = Array.from(searchedCities).reverse()
 
       // if the city is already in the list, remove it first
-      const index = newSearchedCities.findIndex((c) => c.id === city.id)
+      const index = newSearchedCities.findIndex((c) => c.value === city.value)
       if (index !== -1) newSearchedCities.splice(index, 1)
       // add the city to the end of the list
       newSearchedCities.push(city)
@@ -75,7 +70,7 @@ const useWeather = () => {
   if (!weatherContext)
     throw new Error("useCity must be used within a CityProvider")
 
-  const weatherData = useWeatherData(weatherContext.city.id)
+  const weatherData = useWeatherData(weatherContext.city.value)
   return { ...weatherContext, ...weatherData }
 }
 

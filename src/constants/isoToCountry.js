@@ -243,6 +243,7 @@ const isoToCountry = {
   VU: { flag: "🇻🇺", name: "Vanuatu" },
   WF: { flag: "🇼🇫", name: "Wallis & Futuna" },
   WS: { flag: "🇼🇸", name: "Samoa" },
+  XK: { flag: "🇽🇰", name: "Kosovo" },
   YE: { flag: "🇾🇪", name: "Yemen" },
   YT: { flag: "🇾🇹", name: "Mayotte" },
   ZA: { flag: "🇿🇦", name: "South Africa" },

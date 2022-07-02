@@ -6,15 +6,10 @@ import {
   SearchedCityInputItem,
 } from "~/components/CityInputItem"
 import WidgetAutocomplete from "~/components/WidgetAutocomplete"
-import citiesData from "~/constants/cities.json"
+import cities from "~/constants/cities.json"
 import isoToCountry from "~/constants/isoToCountry"
 import { useWeather } from "~/contexts/WeatherContext"
 import removeDiacritics from "~/utils/removeDiacritics"
-
-const cities = citiesData.map((city) => ({
-  value: city.id.toString(),
-  ...city,
-}))
 
 const getSearchResults = (value) => {
   const keyWords = removeDiacritics(value)
@@ -27,17 +22,15 @@ const getSearchResults = (value) => {
     keyWords.every(
       (word) =>
         removeDiacritics(city.name).toUpperCase().includes(word) ||
-        city.state.includes(word) ||
-        isoToCountry[city.country]?.name?.toUpperCase()?.includes(word) ||
+        city.state?.includes(word) ||
+        isoToCountry[city.country].name.toUpperCase().includes(word) ||
         city.country.includes(word)
     )
   )
 }
 
-const constructValue = (city) =>
-  `${city.name}${city.state && ", "}${city.state}${city.country && ", "}${
-    city.country
-  }`
+const constructValue = ({name, state, country}) =>
+  `${name}${state ? `, ${state}` : ""}, ${country}`
 
 const CityInput = () => {
   const { city, setCity, searchedCities, isLagging, isValidating } =
