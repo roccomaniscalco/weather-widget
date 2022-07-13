@@ -12,7 +12,7 @@ const ThemeProvider = ({ children }) => {
           root: {
             backgroundColor:
               theme.colorScheme === "light"
-                ? theme.colors.gray[1]
+                ? theme.white
                 : theme.colors.dark[7],
             boxShadow: theme.colorScheme === "light" && theme.shadows.lg,
           },

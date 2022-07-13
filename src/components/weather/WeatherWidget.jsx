@@ -7,7 +7,7 @@ import WeatherSummary from "~/components/weather/WeatherSummary"
 
 const WeatherWidget = () => {
   return (
-    <Paper radius="xl" sx={{ width: "400px", height: "500px" }}>
+    <Paper radius="xl" withBorder sx={{ width: "400px", height: "500px" }}>
       <Stack justify="space-between" p="xl" sx={{ height: "100%" }}>
         <Group spacing="xs">
           <CityAutocomplete />
@@ -22,8 +22,8 @@ const WeatherWidget = () => {
             alignItems: "flex-end" /* safari fix */,
           }}
         >
-          <WeatherDetails />
           <WeatherSummary />
+          <WeatherDetails />
         </Group>
       </Stack>
     </Paper>

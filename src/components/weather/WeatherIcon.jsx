@@ -30,7 +30,7 @@ const WeatherIcon = () => {
               style={styles}
               styles={{
                 image: {
-                  filter: "drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.4))",
+                  filter: "drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.4))",
                 },
               }}
             />

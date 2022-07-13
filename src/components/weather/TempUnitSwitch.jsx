@@ -7,11 +7,11 @@ const useStyles = createStyles((theme) => ({
     backgroundColor:
       theme.colorScheme === "dark"
         ? theme.colors.dark[6]
-        : theme.colors.gray[3],
+        : theme.colors.gray[1],
     border:
       theme.colorScheme === "dark"
         ? `2px solid ${theme.colors.dark[6]}`
-        : `2px solid ${theme.colors.gray[3]}`,
+        : `2px solid ${theme.colors.gray[1]}`,
     height: "100%",
   },
 }))

@@ -24,7 +24,7 @@ const Clock = () => {
   if (!weather) return <Skeleton width={86} height="100%" radius="xl" />
 
   return (
-    <Text size="xs" color="dimmed">
+    <Text size="xs">
       {applyTimezoneOffset(date, weather.timezone).toLocaleTimeString("en-US", {
         hour: "2-digit",
         minute: "2-digit",

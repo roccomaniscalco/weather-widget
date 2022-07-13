@@ -12,13 +12,15 @@ const WeatherSummary = () => {
     <Stack
       spacing={2}
       justify="space-between"
-      sx={{ maxWidth: 130, textAlign: "right" }}
+      sx={{ flex: 1, textAlign: "left" }}
     >
       <Clock />
       <TempText style={{ fontSize: 48, lineHeight: 1 }}>
         {weather.main.temp}
       </TempText>
-      <Text size="md">{weather.weather[0].description}</Text>
+      <Text size="md">
+      {weather.weather[0].description}
+      </Text>
     </Stack>
   )
 }

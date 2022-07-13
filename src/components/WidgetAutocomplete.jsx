@@ -18,13 +18,19 @@ const useStyles = createStyles((theme) => ({
 
   input: {
     borderRadius: theme.radius.xl,
+    "&::placeholder": {
+      color:
+        theme.colorScheme === "dark"
+          ? theme.colors.dark[3]
+          : theme.colors.gray[6],
+    },
   },
 
   filledVariant: {
     backgroundColor:
       theme.colorScheme === "dark"
         ? theme.colors.dark[6]
-        : theme.colors.gray[3],
+        : theme.colors.gray[1],
     "&:focus": {
       border: "none",
     },

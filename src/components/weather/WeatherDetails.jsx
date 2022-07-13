@@ -11,7 +11,7 @@ const WeatherDetails = () => {
   if (!weather) return <Skeleton sx={{ flex: 3 }} height={100} />
 
   return (
-    <SimpleGrid spacing="xs" cols={2}>
+    <SimpleGrid spacing={0} cols={2}>
       <WeatherDetailsItem
         icon={<ArrowUpRight color={theme.colors.green[5]} />}
         title="High"
@@ -19,16 +19,16 @@ const WeatherDetails = () => {
         <TempText>{weather.main.temp_max}</TempText>
       </WeatherDetailsItem>
       <WeatherDetailsItem
-        icon={<ArrowDownLeft color={theme.colors.red[5]} />}
-        title="Low"
-      >
-        <TempText>{weather.main.temp_min}</TempText>
-      </WeatherDetailsItem>
-      <WeatherDetailsItem
         icon={<Wind color={theme.colors.gray[5]} />}
         title="Wind"
       >
         {Math.round(weather.wind.speed) + "m/s"}
+      </WeatherDetailsItem>
+      <WeatherDetailsItem
+        icon={<ArrowDownLeft color={theme.colors.red[5]} />}
+        title="Low"
+      >
+        <TempText>{weather.main.temp_min}</TempText>
       </WeatherDetailsItem>
       <WeatherDetailsItem
         icon={<Droplet color={theme.colors.blue[5]} />}
