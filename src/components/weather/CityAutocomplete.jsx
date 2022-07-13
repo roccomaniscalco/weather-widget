@@ -3,7 +3,7 @@ import { useState } from "react"
 import { Search } from "tabler-icons-react"
 import {
   CityAutocompleteItem,
-  SearchedCityAutocompleteItem
+  SearchedCityAutocompleteItem,
 } from "~/components/weather/CityAutocompleteItem"
 import WidgetAutocomplete from "~/components/WidgetAutocomplete"
 import cities from "~/constants/cities.json"
@@ -15,30 +15,34 @@ const getSearchResults = (value) => {
   const keyWords = removeDiacritics(value)
     .toUpperCase()
     .replace(/\s+/g, " ") // remove extra spaces
-    .replaceAll(",", "") // remove commas
+    .replaceAll(",", "")
     .split(" ")
 
   return cities.filter((city) =>
     keyWords.every(
       (word) =>
+        // city name includes word
         removeDiacritics(city.name).toUpperCase().includes(word) ||
+        // state includes word
         city.state?.includes(word) ||
+        // country includes word
         isoToCountry[city.country].name.toUpperCase().includes(word) ||
+        // country abbreviation includes word
         city.country.includes(word)
     )
   )
 }
 
-const constructValue = ({name, state, country}) =>
+const cityToString = ({ name, state, country }) =>
   `${name}${state ? `, ${state}` : ""}, ${country}`
 
 const CityAutocomplete = () => {
   const { city, setCity, searchedCities, isLagging, isValidating } =
     useWeather()
-  const [value, setValue] = useState(constructValue(city))
+  const [value, setValue] = useState(cityToString(city))
   const [searchResults, setSearchResults] = useState(cities)
 
-  const handleBlur = () => setValue(constructValue(city))
+  const handleBlur = () => setValue(cityToString(city))
   const handleFocus = () => setValue("")
   const handleChange = (newValue) => {
     setSearchResults(getSearchResults(newValue))
@@ -47,7 +51,7 @@ const CityAutocomplete = () => {
   const handleItemSubmit = (item) => {
     setSearchResults(getSearchResults(item.name))
     setCity(item)
-    setValue(constructValue(item))
+    setValue(cityToString(item))
   }
 
   return (
@@ -61,7 +65,9 @@ const CityAutocomplete = () => {
       rightSection={(isLagging || isValidating) && <Loader size="sm" />}
       value={value}
       data={value === "" ? searchedCities : searchResults}
-      itemComponent={value === "" ? SearchedCityAutocompleteItem : CityAutocompleteItem}
+      itemComponent={
+        value === "" ? SearchedCityAutocompleteItem : CityAutocompleteItem
+      }
       onChange={handleChange}
       onItemSubmit={handleItemSubmit}
       onBlur={handleBlur}
