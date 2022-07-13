@@ -4,7 +4,7 @@ import { Search } from "tabler-icons-react"
 import {
   CityAutocompleteItem,
   SearchedCityAutocompleteItem,
-} from "~/components/CityAutocompleteItem"
+} from "~/components/weather/CityAutocompleteItem"
 import WidgetAutocomplete from "~/components/WidgetAutocomplete"
 import cities from "~/constants/cities.json"
 import isoToCountry from "~/constants/isoToCountry"

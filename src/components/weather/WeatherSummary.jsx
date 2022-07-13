@@ -1,6 +1,6 @@
 import { Skeleton, Stack, Text } from "@mantine/core"
-import Clock from "~/components/Clock"
-import TempText from "~/components/TempText"
+import Clock from "~/components/weather/Clock"
+import TempText from "~/components/weather/TempText"
 import { useWeather } from "~/contexts/WeatherContext"
 
 const WeatherSummary = () => {

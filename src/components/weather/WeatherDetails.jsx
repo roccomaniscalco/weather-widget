@@ -1,7 +1,7 @@
 import { SimpleGrid, Skeleton, useMantineTheme } from "@mantine/core"
 import { ArrowDownLeft, ArrowUpRight, Droplet, Wind } from "tabler-icons-react"
-import TempText from "~/components/TempText"
-import WeatherDetailsItem from "~/components/WeatherDetailsItem"
+import TempText from "~/components/weather/TempText"
+import WeatherDetailsItem from "~/components/weather/WeatherDetailsItem"
 import { useWeather } from "~/contexts/WeatherContext"
 
 const WeatherDetails = () => {

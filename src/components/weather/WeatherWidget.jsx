@@ -1,9 +1,9 @@
 import { Group, Paper, Stack } from "@mantine/core"
-import CityAutocomplete from "~/components/CityAutocomplete"
-import TempUnitSwitch from "~/components/TempUnitSwitch"
-import WeatherDetails from "~/components/WeatherDetails"
-import WeatherIcon from "~/components/WeatherIcon"
-import WeatherSummary from "~/components/WeatherSummary"
+import CityAutocomplete from "~/components/weather/CityAutocomplete"
+import TempUnitSwitch from "~/components/weather/TempUnitSwitch"
+import WeatherDetails from "~/components/weather/WeatherDetails"
+import WeatherIcon from "~/components/weather/WeatherIcon"
+import WeatherSummary from "~/components/weather/WeatherSummary"
 
 const WeatherWidget = () => {
   return (

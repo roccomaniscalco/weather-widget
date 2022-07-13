@@ -1,5 +1,5 @@
 import { Center } from "@mantine/core"
-import WeatherWidget from "~/components/WeatherWidget"
+import WeatherWidget from "~/components/weather/WeatherWidget"
 import { WeatherProvider } from "~/contexts/WeatherContext"
 import SwrConfigProvider from "~/contexts/SwrConfigProvider"
 import ThemeProvider from "~/contexts/ThemeProvider"
