@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { Loader } from "@mantine/core"
+import { useState, useTransition } from "react"
 import { Search } from "tabler-icons-react"
 import {
   CityAutocompleteItem,
@@ -37,6 +38,7 @@ const cityToString = ({ name, state, country }) =>
 
 const CityAutocomplete = () => {
   const { city, setCity, searchedCities } = useWeatherSettings()
+  const [isTransitioningCity, startTransitioningCity] = useTransition()
   const [value, setValue] = useState(cityToString(city))
   const [searchResults, setSearchResults] = useState(cities)
 
@@ -48,8 +50,8 @@ const CityAutocomplete = () => {
   }
   const handleItemSubmit = (item) => {
     setSearchResults(getSearchResults(item.name))
-    setCity(item)
     setValue(cityToString(item))
+    startTransitioningCity(() => setCity(item))
   }
 
   return (
@@ -60,6 +62,7 @@ const CityAutocomplete = () => {
       placeholder="Search for a city"
       nothingFound="No cities found"
       icon={<Search size={16} />}
+      rightSection={isTransitioningCity && <Loader size="sm" />}
       value={value}
       data={value === "" ? searchedCities : searchResults}
       itemComponent={
