@@ -7,7 +7,7 @@ import WeatherSummary from "~/components/weather/WeatherSummary"
 
 const WeatherWidget = () => {
   return (
-    <Paper radius="xl" withBorder sx={{ width: "400px", height: "500px" }}>
+    <Paper radius="xl" withBorder sx={{ width: "380px", height: "480px" }}>
       <Stack justify="space-between" p="xl" sx={{ height: "100%" }}>
         <Group>
           <CityAutocomplete />

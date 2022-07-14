@@ -26,7 +26,7 @@ const WeatherIcon = () => {
             <Image
               src={debouncedIcon && `weather/${debouncedIcon}.png`}
               alt={debouncedIcon}
-              width={250}
+              width={220}
               style={styles}
               styles={{
                 image: {
