@@ -11,7 +11,7 @@ const WeatherIcon = () => {
   const { city } = useWeatherSettings()
   const { weather } = useWeather(city.value)
   const [debouncedWeather] = useDebouncedValue(weather, TRANSITION_DURATION)
-  const debouncedIcon = weatherCodeToIcon[debouncedWeather?.weather[0]?.icon]
+  const debouncedIcon = weatherCodeToIcon[debouncedWeather.weather[0].icon]
 
   return (
     <Center>
@@ -24,7 +24,7 @@ const WeatherIcon = () => {
         >
           {(styles) => (
             <Image
-              src={debouncedIcon && `weather/${debouncedIcon}.png`}
+              src={`weather/${debouncedIcon}.png`}
               alt={debouncedIcon}
               width={220}
               style={styles}
