@@ -1,14 +1,13 @@
-import { Loader } from "@mantine/core"
 import { useState } from "react"
 import { Search } from "tabler-icons-react"
 import {
   CityAutocompleteItem,
-  SearchedCityAutocompleteItem,
+  SearchedCityAutocompleteItem
 } from "~/components/weather/CityAutocompleteItem"
 import WidgetAutocomplete from "~/components/WidgetAutocomplete"
 import cities from "~/constants/cities.json"
 import isoToCountry from "~/constants/isoToCountry"
-import { useWeather } from "~/contexts/WeatherContext"
+import { useWeatherSettings } from "~/contexts/WeatherSettingsContext"
 import removeDiacritics from "~/utils/removeDiacritics"
 
 const getSearchResults = (value) => {
@@ -37,8 +36,7 @@ const cityToString = ({ name, state, country }) =>
   `${name}${state ? `, ${state}` : ""}, ${country}`
 
 const CityAutocomplete = () => {
-  const { city, setCity, searchedCities, isLagging, isValidating } =
-    useWeather()
+  const { city, setCity, searchedCities } = useWeatherSettings()
   const [value, setValue] = useState(cityToString(city))
   const [searchResults, setSearchResults] = useState(cities)
 
@@ -62,7 +60,6 @@ const CityAutocomplete = () => {
       placeholder="Search for a city"
       nothingFound="No cities found"
       icon={<Search size={16} />}
-      rightSection={(isLagging || isValidating) && <Loader size="sm" />}
       value={value}
       data={value === "" ? searchedCities : searchResults}
       itemComponent={

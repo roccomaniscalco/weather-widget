@@ -7,6 +7,7 @@ const options = {
   revalidateOnFocus: false,
   revalidateOnReconnect: false,
   shouldRetryOnError: false,
+  suspense: true,
   fetcher,
 }
 

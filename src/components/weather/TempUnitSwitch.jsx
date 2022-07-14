@@ -1,6 +1,6 @@
 import { Center, createStyles, SegmentedControl } from "@mantine/core"
 import { TemperatureCelsius, TemperatureFahrenheit } from "tabler-icons-react"
-import { useWeather } from "~/contexts/WeatherContext"
+import { useWeatherSettings } from "~/contexts/WeatherSettingsContext"
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -18,7 +18,7 @@ const useStyles = createStyles((theme) => ({
 
 const TempUnitSwitch = () => {
   const { classes } = useStyles()
-  const { tempUnit, setTempUnit } = useWeather()
+  const { tempUnit, setTempUnit } = useWeatherSettings()
 
   const data = [
     {

@@ -1,11 +1,10 @@
 import { Text } from "@mantine/core"
 import { number } from "prop-types"
-import React from "react"
-import { useWeather } from "~/contexts/WeatherContext"
+import { useWeatherSettings } from "~/contexts/WeatherSettingsContext"
 import { kelvinToCelsius, kelvinToFahrenheit } from "~/utils/convertKelvin"
 
 const TempText = ({ children, ...props }) => {
-  const { tempUnit } = useWeather()
+  const { tempUnit } = useWeatherSettings()
   const temp =
     tempUnit === "c" ? kelvinToCelsius(children) : kelvinToFahrenheit(children)
 

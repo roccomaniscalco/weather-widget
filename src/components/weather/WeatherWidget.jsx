@@ -1,4 +1,5 @@
-import { Group, Paper, Stack } from "@mantine/core"
+import { Group, Paper, Skeleton, Stack } from "@mantine/core"
+import { Suspense } from "react"
 import CityAutocomplete from "~/components/weather/CityAutocomplete"
 import TempUnitSwitch from "~/components/weather/TempUnitSwitch"
 import WeatherDetails from "~/components/weather/WeatherDetails"
@@ -13,7 +14,9 @@ const WeatherWidget = () => {
           <CityAutocomplete />
           <TempUnitSwitch />
         </Group>
-        <WeatherIcon />
+        <Suspense fallback={<Skeleton sx={{ flex: 1 }} />}>
+          <WeatherIcon />
+        </Suspense>
         <Group
           position="apart"
           noWrap
@@ -22,8 +25,12 @@ const WeatherWidget = () => {
             alignItems: "flex-end" /* safari fix */,
           }}
         >
-          <WeatherSummary />
-          <WeatherDetails />
+          <Suspense fallback={<Skeleton sx={{ flex: 2 }} height={100} />}>
+            <WeatherSummary />
+          </Suspense>
+          <Suspense fallback={<Skeleton sx={{ flex: 3 }} height={100} />}>
+            <WeatherDetails />
+          </Suspense>
         </Group>
       </Stack>
     </Paper>

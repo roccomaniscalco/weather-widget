@@ -1,14 +1,14 @@
-import { SimpleGrid, Skeleton, useMantineTheme } from "@mantine/core"
+import { SimpleGrid, useMantineTheme } from "@mantine/core"
 import { ArrowDownLeft, ArrowUpRight, Droplet, Wind } from "tabler-icons-react"
 import TempText from "~/components/weather/TempText"
 import WeatherDetailsItem from "~/components/weather/WeatherDetailsItem"
-import { useWeather } from "~/contexts/WeatherContext"
+import { useWeatherSettings } from "~/contexts/WeatherSettingsContext"
+import useWeather from "~/hooks/useWeather"
 
 const WeatherDetails = () => {
-  const { weather } = useWeather()
   const theme = useMantineTheme()
-
-  if (!weather) return <Skeleton sx={{ flex: 3 }} height={100} />
+  const { city } = useWeatherSettings()
+  const { weather } = useWeather(city.value)
 
   return (
     <SimpleGrid spacing={0} cols={2}>

@@ -1,12 +1,12 @@
-import { Skeleton, Stack, Text } from "@mantine/core"
+import { Stack, Text } from "@mantine/core"
 import Clock from "~/components/weather/Clock"
 import TempText from "~/components/weather/TempText"
-import { useWeather } from "~/contexts/WeatherContext"
+import { useWeatherSettings } from "~/contexts/WeatherSettingsContext"
+import useWeather from "~/hooks/useWeather"
 
 const WeatherSummary = () => {
-  const { weather } = useWeather()
-
-  if (!weather) return <Skeleton sx={{ flex: 2 }} height={100} />
+  const { city } = useWeatherSettings()
+  const { weather } = useWeather(city.value)
 
   return (
     <Stack
@@ -18,9 +18,7 @@ const WeatherSummary = () => {
       <TempText style={{ fontSize: 48, lineHeight: 1 }}>
         {weather.main.temp}
       </TempText>
-      <Text size="md">
-      {weather.weather[0].description}
-      </Text>
+      <Text size="md">{weather.weather[0].description}</Text>
     </Stack>
   )
 }
