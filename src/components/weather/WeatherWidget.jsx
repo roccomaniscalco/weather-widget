@@ -9,7 +9,7 @@ const WeatherWidget = () => {
   return (
     <Paper radius="xl" withBorder sx={{ width: "400px", height: "500px" }}>
       <Stack justify="space-between" p="xl" sx={{ height: "100%" }}>
-        <Group spacing="xs">
+        <Group>
           <CityAutocomplete />
           <TempUnitSwitch />
         </Group>

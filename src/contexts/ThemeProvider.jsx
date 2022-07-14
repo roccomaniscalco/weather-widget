@@ -6,7 +6,7 @@ const ThemeProvider = ({ children }) => {
     <MantineProvider
       withNormalizeCSS
       withGlobalStyles
-      theme={{ colorScheme: "light" }}
+      theme={{ colorScheme: "dark" }}
       styles={{
         Paper: (theme) => ({
           root: {
