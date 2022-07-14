@@ -21,7 +21,16 @@ const ErrorFallback = () => {
             mounted={isMounted}
           >
             {(styles) => (
-              <Image src="weather/stars.png" width={220} style={styles} />
+              <Image
+                src="weather/stars.png"
+                width={220}
+                style={styles}
+                styles={{
+                  image: {
+                    filter: "drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.4))",
+                  },
+                }}
+              />
             )}
           </Transition>
         </PerspectiveBox>
