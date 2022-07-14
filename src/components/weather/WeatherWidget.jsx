@@ -1,6 +1,9 @@
-import { Group, Paper, Skeleton, Stack } from "@mantine/core"
+import { Group, Paper, Stack } from "@mantine/core"
 import { Suspense } from "react"
+import ErrorBoundary from "~/components/ErrorBoundary"
 import CityAutocomplete from "~/components/weather/CityAutocomplete"
+import ErrorFallback from "~/components/weather/ErrorFallback"
+import SuspenseFallback from "~/components/weather/SuspenseFallback"
 import TempUnitSwitch from "~/components/weather/TempUnitSwitch"
 import WeatherDetails from "~/components/weather/WeatherDetails"
 import WeatherIcon from "~/components/weather/WeatherIcon"
@@ -14,24 +17,22 @@ const WeatherWidget = () => {
           <CityAutocomplete />
           <TempUnitSwitch />
         </Group>
-        <Suspense fallback={<Skeleton sx={{ flex: 1 }} />}>
-          <WeatherIcon />
-        </Suspense>
-        <Group
-          position="apart"
-          noWrap
-          sx={{
-            maxHeight: "97px",
-            alignItems: "flex-end" /* safari fix */,
-          }}
-        >
-          <Suspense fallback={<Skeleton sx={{ flex: 2 }} height={100} />}>
-            <WeatherSummary />
+        <ErrorBoundary fallback={<ErrorFallback />}>
+          <Suspense fallback={<SuspenseFallback />}>
+            <WeatherIcon />
+            <Group
+              position="apart"
+              noWrap
+              sx={{
+                maxHeight: "97px",
+                alignItems: "flex-end" /* safari fix */,
+              }}
+            >
+              <WeatherSummary />
+              <WeatherDetails />
+            </Group>
           </Suspense>
-          <Suspense fallback={<Skeleton sx={{ flex: 3 }} height={100} />}>
-            <WeatherDetails />
-          </Suspense>
-        </Group>
+        </ErrorBoundary>
       </Stack>
     </Paper>
   )
