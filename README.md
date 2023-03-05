@@ -6,8 +6,8 @@ An elegant React weather widget using Mantine and OpenWeatherMap
 ## Features
 - Uses React `Suspense`
 - Has some snazzy animations
-– Search for any city (in the massive json file thats sent to the client)
-- Displays current temp, time, weather description, wind conditons, humidity, aloong with the daily high and low temp
+- Search for any city (a massive json file of cities is sent to the client)
+- Displays temperature, time, weather description, wind conditons, humidity, and high and low temperatures
 - Decently compact and fun!
 
 ## Technologies Used
